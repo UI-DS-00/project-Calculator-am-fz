@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 @AllArgsConstructor
 @RestController
 public class OperationsController {
 
     private Services services;
-    //Input inputFromUI;
     @PostMapping("/calculator")
-    public ResponseEntity<String> calculator(@RequestBody String input) throws Throwable {
+    public ResponseEntity<Input> calculator(@RequestBody Input input) throws Throwable {
         return new ResponseEntity<>( services.calculate(input), HttpStatus.OK);
     }
 

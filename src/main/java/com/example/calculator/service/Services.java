@@ -23,15 +23,15 @@ public class Services {
     private HistoryService historyService;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public String calculate(String input) throws Throwable {
-        String firstInput = input;
-        //String firstInput1 = input.getIn();
+    public Input calculate(Input input) throws Throwable {
+        String firstInput = input.getInput();
+        String firstInput1 = input.getInput();
 
-        input = new String();
-        input = infixToPostfix(firstInput);
+        //input = new String();
+        input.setInput( infixToPostfix(firstInput));
         SinglyLinkedListStack<Double> stack = new SinglyLinkedListStack<>();
 
-        String[] inputs = input.split(" ");
+        String[] inputs = input.getInput().split(" ");
 
         String answer;
         try {
@@ -43,8 +43,8 @@ public class Services {
         }
         Input input1 = new Input();
         historyService.addToDB(firstInput,answer);
-        //input1.setIn( answer);
-        return answer;
+        input1.setInput( answer);
+        return input1;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private static Double handleCalculation(SinglyLinkedListStack<Double> stack, String[] el) {
