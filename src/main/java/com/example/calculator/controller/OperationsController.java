@@ -1,5 +1,6 @@
 package com.example.calculator.controller;
 
+import com.example.calculator.models.Input;
 import com.example.calculator.service.Services;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OperationsController {
 
     private Services services;
+    //Input inputFromUI;
     @PostMapping("/calculator")
     public ResponseEntity<String> calculator(@RequestBody String input) throws Throwable {
         return new ResponseEntity<>( services.calculate(input), HttpStatus.OK);

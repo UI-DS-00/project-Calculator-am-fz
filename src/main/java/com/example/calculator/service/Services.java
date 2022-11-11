@@ -1,10 +1,12 @@
 package com.example.calculator.service;
 
+import com.example.calculator.models.Input;
 import com.example.calculator.models.SinglyLinkedListStack;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -23,6 +25,8 @@ public class Services {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public String calculate(String input) throws Throwable {
         String firstInput = input;
+        //String firstInput1 = input.getIn();
+
         input = new String();
         input = infixToPostfix(firstInput);
         SinglyLinkedListStack<Double> stack = new SinglyLinkedListStack<>();
@@ -37,7 +41,9 @@ public class Services {
             answer = "error";
             System.out.println("Wrong input");
         }
+        Input input1 = new Input();
         historyService.addToDB(firstInput,answer);
+        //input1.setIn( answer);
         return answer;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
