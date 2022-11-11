@@ -4,16 +4,15 @@ import com.example.calculator.service.Services;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-public class calController {
+public class OperationsController {
 
-    Services services;
+    private Services services;
     @PostMapping("/calculator")
     public ResponseEntity<String> calculator(@RequestBody String input) throws Throwable {
         return new ResponseEntity<>( services.calculate(input), HttpStatus.OK);
@@ -26,6 +25,10 @@ public class calController {
     @PostMapping("/cos")
     public ResponseEntity<String> cos(@RequestBody String input) throws Throwable {
         return new ResponseEntity<>( services.cosCalculator(input), HttpStatus.OK);
+    }
+    @PostMapping("/tan")
+    public ResponseEntity<String> tan(@RequestBody String input) throws Throwable {
+        return new ResponseEntity<>( services.tanCalculator(input), HttpStatus.OK);
     }
 
 }

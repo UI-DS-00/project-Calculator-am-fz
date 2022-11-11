@@ -18,9 +18,13 @@ public class Services {
     private static final String DIV = "/";
     private static final String POW = "^";
 
+    private HistoryService historyService;
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public String calculate(String input) throws Throwable {
-        input = infixToPostfix(input);
+        String firstInput = input;
+        input = new String();
+        input = infixToPostfix(firstInput);
         SinglyLinkedListStack<Double> stack = new SinglyLinkedListStack<>();
 
         String[] inputs = input.split(" ");
@@ -29,11 +33,11 @@ public class Services {
         try {
             answer = String.valueOf(handleCalculation(stack, inputs));
             System.out.println(answer);
-            return answer;
         }catch (NumberFormatException nf){
             answer = "error";
             System.out.println("Wrong input");
         }
+        historyService.addToDB(firstInput,answer);
         return answer;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -186,6 +190,8 @@ public class Services {
             System.out.println("Wrong input");
             ans = "error";
         }
+        historyService.addToDB("sin" + input,String.valueOf(ans));
+
         return String.valueOf(ans);
 
     }
@@ -194,13 +200,35 @@ public class Services {
     public String cosCalculator(String input){
         String ans;
         try {
-            ans = String.valueOf(Math.sin(Double.parseDouble(input)));
+            ans = String.valueOf(Math.cos(Double.parseDouble(input)));
         }catch (Exception e){
             System.out.println("Wrong input");
             ans = "error";
         }
+        historyService.addToDB("cos" + input,String.valueOf(ans));
         return String.valueOf(ans);
 
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public String tanCalculator(String input){
+        String ans;
+        try {
+            ans = String.valueOf(Math.tan(Double.parseDouble(input)));
+        }catch (Exception e){
+            System.out.println("Wrong input");
+            ans = "error";
+        }
+        historyService.addToDB("Tan" + input,String.valueOf(ans));
+        return String.valueOf(ans);
+
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
 }
