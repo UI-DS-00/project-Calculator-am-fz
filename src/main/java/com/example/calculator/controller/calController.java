@@ -14,8 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class calController {
 
     Services services;
-    @PostMapping("/user")
-    public ResponseEntity<String> loginUser(@RequestBody String input) {
-        return new ResponseEntity<>( services.idk(input), HttpStatus.OK);
+    @PostMapping("/calculator")
+    public ResponseEntity<String> calculator(@RequestBody String input) throws Throwable {
+        return new ResponseEntity<>( services.calculate(input), HttpStatus.OK);
     }
+
+    @PostMapping("/sin")
+    public ResponseEntity<String> sin(@RequestBody String input) throws Throwable {
+        return new ResponseEntity<>( services.sinCalculator(input), HttpStatus.OK);
+    }
+    @PostMapping("/cos")
+    public ResponseEntity<String> cos(@RequestBody String input) throws Throwable {
+        return new ResponseEntity<>( services.cosCalculator(input), HttpStatus.OK);
+    }
+
 }
